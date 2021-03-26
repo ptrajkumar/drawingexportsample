@@ -1,0 +1,25 @@
+{
+  "name": "trekexport",
+  "version": "1.0.0",
+  "description": "Ability to export drawings upon release",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "export",
+    "release"
+  ],
+  "author": "ptrajkumar",
+  "license": "ISC",
+  "dependencies": {
+    "log4js": "^6.3.0",
+    "minimist": "^1.2.5",
+    "randomstring": "^1.1.5",
+    "time-span": "^4.0.0",
+    "unirest": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0"
+  }
+}
