@@ -36,11 +36,12 @@ ApiKeyClient.prototype.callApiDelete = function (apiRelativePath) {
   return this.callApiVerb(apiRelativePath, 'DELETE');
 };
 
-ApiKeyClient.prototype.downloadFile = function (documentId, externalId, filePath) {
+ApiKeyClient.prototype.downloadFile = function (apiRelativePath, filePath) {
   var self = this;
+  const fullUri = apiRelativePath.startsWith('http') ? apiRelativePath : self.baseURL + apiRelativePath;
   return new Promise(function (resolve, reject) {
-    log.debug(`downloadFile for ${documentId} to ${filePath}`);
-    const downloadreq = self.getSignedUnirest(self.baseURL + 'api/documents/d/' + documentId + '/externaldata/' + externalId, 'GET');
+    log.debug(`Downloading ${fullUri} to ${filePath}`);
+    const downloadreq = self.getSignedUnirest(fullUri, 'GET');
     downloadreq
       .encoding('binary')
       .timeout(600000)

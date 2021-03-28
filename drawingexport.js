@@ -204,7 +204,7 @@ async function exportSingleDrawing(rev, apiClient, exportedInfo) {
   }
 
   // Download the export result and store it locally
-  await apiClient.downloadFile(documentId, externalId, pdfOutput);
+  await apiClient.downloadFile(`api/documents/d/${documentId}/externaldata/${externalId}`, pdfOutput);
 }
 
 /**
