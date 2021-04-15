@@ -3,6 +3,7 @@ const log = require('./utils/logger').getLogger('export');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const timeSpan = require('time-span');
+const sanitize = require("sanitize-filename");
 
 const argv = require('minimist')(process.argv.slice(2));
 const stackToUse = argv['stack'] || 'reardmener';
@@ -157,7 +158,8 @@ async function processRevisionBatch(revisions, apiClient, exportedInfo) {
  */
 async function exportSingleDrawing(rev, apiClient, exportedInfo) {
   const documentId = rev.documentId;
-  const outputFileName = `${rev.partNumber}_${rev.revision}.pdf`;
+  const filenameNoExt = sanitize(`${rev.partNumber}_${rev.revision}`);
+  const outputFileName = `${filenameNoExt}.pdf`;
   const pdfOutput = EXPORT_FOLDER + '/' + outputFileName;
 
   if (fs.existsSync(pdfOutput)) {
